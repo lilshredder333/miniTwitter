@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 
-//all tweets route
+//all users route
 router.get('/', async (req, res) => {
     let searchOptions = {}
     if (req.query.name != null && req.query.name !== ''){
@@ -20,13 +20,13 @@ router.get('/', async (req, res) => {
 })
 
 
-//New tweet route
-router.get('/new', (req, res) => {
+//New user route
+router.get('/new', async (req, res) => {
     res.render('users/new', { user: new User() })
 
 })
 
-//Create tweet route - using async bc MONGODB
+//Create new user route - using async bc MONGODB
 router.post('/', async (req, res) => {
     const user = new User({
         name: req.body.name
